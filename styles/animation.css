@@ -1,0 +1,12 @@
+@keyframes bg {
+    0% {background-position: 0%}
+    100% {background-position: 400%}
+}
+@keyframes up {
+    0% {transform: translateY(-10px);}
+    100% {transform: translateY(30px);}
+}
+@keyframes pos {
+    0% {background-position-x: -100px;}
+    100% {background-position-x: 8000px;}
+}

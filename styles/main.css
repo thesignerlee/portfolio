@@ -1,32 +1,85 @@
+/* scrollbar css(chrome) */
+::-webkit-scrollbar {width:10px; height:10px;}
+::-webkit-scrollbar-track {background:#ccc;}
+::-webkit-scrollbar-thumb {
+    background:pink; border-radius: 5px;
+}
+/* design */
 body {
     background: url(../images/7598163.jpg) center; /* 프리픽 백그라운드 검색해서 받은 이미지 */
     background-size: cover;
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 main {
-    width:1440px; height:100vh; margin: 150px auto;
+    margin-top: 150px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
 }
 main .photo {width: 200px; height: 200px; overflow: hidden; border-radius: 100px; border: 10px solid #fff;
-            margin-bottom: 40px;
+    margin-bottom: 40px;
+    animation: up 1.5s linear infinite alternate;
 }
 main .photo img {width:100%;}
-main h1 { font-size: 1.5rem;}
-main .loading {margin: 20px 0 30px 0; border-radius: 50px;  background: #fff; width:300px; height:10px;}
-main .loading .bar {}
-main p { margin-bottom:30px;}
-main .sns {
-}
-main .sns a {width:25px;
+main h1 {
+    font-size: 1.5rem; font-family: 'Lobster', cursive;
+    text-transform:capitalize;
+    font-size: 2rem;
+    background: linear-gradient(to right, #ff00ff, #0ff, #f0f);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: bg 10s linear infinite;
+} /* 문장마다 폰트 다르게 넣고 싶으면 임포트 리셋에 넣고 여기에 CSS 복붙하기 */
+main .loading {margin: 20px 0 40px 0; border-radius: 50px;  background: #fff; width:300px; height:10px; overflow: hidden;}
+main .loading .bar {
+    background-color: #f0f;
     display: block;
+    width:100%; height:10px;
+    transform:scaleX(0);
+    transition: all 3s ease-out;
+    transform-origin: left top;
 }
+/* photo 마우스 오버 시 bar 변화 주기 */
+main .photo:hover ~ .loading .bar { transform: scaleX(1);}
+main p { margin-bottom:30px; font-weight: 600;}
+main .sns {
+    display: flex;
+}
+main .sns a {width:25px; margin-right: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+main .sns a:last-child {margin: 0;}
 main .sns a img {width:100%;} 
-main .sns a .tip {}
+main .sns a .tip {
+    font-family: 'Lobster', cursive;
+    background: #222; color:#fff; padding: 5px;
+    transform: scaleX(0); /* opacity:0; */ /* 디스플레이 하면 덜컹거림, 디스플레이 넌, 디스플레이 블럭, 요소가 지웠다가 생기는 것 때문에 높이가 보임 */
+}
+main .sns a:hover .tip {transform:scaleX(1) translateY(10px);}/* opacity:1 */
 main .gnb {}
 main .gnb span {}
 main .gnb span:nth-child(1) {}
 main .gnb span:nth-child(2) {}
 main .gnb span:nth-child(3) {}
+/* main-bg */
+.bg {margin-top: 300px;}
+.bg > div {
+    width: 150%; height:100px;
+    background:  url(../images/bg_new.png) repeat-x;
+}
+.bg .txt1 {
+
+    transform: rotate(-10deg) translateX(-100px);
+    animation: pos 80s linear alternate-reverse infinite;
+}
+.bg .txt2 {
+    filter:invert(1); background-color: #fff;
+    transform: rotate(10deg) translateX(-100px);
+    animation: pos 80s linear alternate-reverse infinite;
+}
